@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>learn-backbone.js-Hello World</title>
+</head>
+<body>
+    <script src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
+    <script src="http://the5fireblog.b0.upaiyun.com/staticfile/underscore.js"></script>
+    <script src="http://the5fireblog.b0.upaiyun.com/staticfile/backbone.js"></script>
+    <script>
+        (function ($) {
+            var Man = Backbone.Model.extend({
+                initialize: function () {
+                    alert("Hey, you creat me");
+
+                    //绑定属性变化监听
+                    this.bind("change:name", function () {
+                        var name = this.get("name");
+                        alert("修改name的属性值为:" + name);
+                    });
+                    //绑定
+                    this.bind("invalid", function (model, error) {
+                        alert(error);
+                    });
+                },
+                defaults: {
+                    name: "张晶尧",
+                    age: "22"
+                },
+                validate: function (attributes) {
+                    if (attributes.name == '') {
+                        return "name 不能为空 "
+                    }
+                },
+                aboutMe: function () {
+                    return '我叫' + this.get('name') + ',今年' + this.get('age') + '岁';
+                }
+
+            });
+            var man = new Man;
+            // 这种方式添加错误处理也行
+            // man.on('invalid', function(model, error){
+            //         alert(error);
+            // });
+            man.set({ name: "change" });
+            man.set({ name: "change2" });
+            man.set({ age: 2 });
+            //默认set时不进行验证
+            man.set({ name: '' });
+            //手动触发验证, set时会触发
+            //man.set({name:''}, {'validate':true});
+            //save时触发验证。根据验证规则，弹出错误提示。
+            man.save();
+            alert(man.get("age"));
+
+            var Woman = Backbone.Model.extend({
+                initialize: function () {
+                    alert("Hey, you creat me");
+                },
+                
+                aboutMe: function(){
+                    return '我叫' + this.get('name') + ',今年' + this.get('age') + '岁';
+                }
+            });
+            
+            var woman = new Woman;
+
+            woman.set({name: "张晶尧", age: "22"});
+            alert(woman.get("name"));
+            console.log(woman.aboutMe());
+        })(jQuery);
+    </script>
+</body>
+</html>
