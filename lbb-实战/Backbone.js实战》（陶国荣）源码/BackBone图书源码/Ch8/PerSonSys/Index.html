@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>人员信息管理系统</title>
+  <script src="Js/jquery-1.8.2.min.js" type="text/javascript"></script>
+  <script src="Js/underscore-min.js" type="text/javascript"></script>
+  <script src="Js/backbone-min.js" type="text/javascript"></script>
+  <script src="js/backbone-localstorage.js" type="text/javascript"></script>
+  <script src="Js/application.js" type="text/javascript"></script>
+  <link href="Css/person.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="info"></div>
+</body>
+  <script type="text/template" id="tpl-item">
+      <%= (name ? name : "<i>姓名为空</i>") %>
+  </script>
+  <script type="text/template" id="tpl-top"> 
+    <header>
+      <input type="search" autofocus>
+    </header>
+    <div class="items"></div>
+    <footer>
+      <button>新建</button>
+    </footer>
+  </script>
+  <script type="text/template" id="tpl-show">
+    <header>
+      <a class="edit">编辑</a>
+    </header>
+    <div class="content">
+      <p>姓名：<%= name %></p>
+      <p>性别：<%= sex %></p>
+      <p>邮箱：<%= email %></p>
+    </div>
+  </script>
+  <script type="text/template" id="tpl-edit">
+    <header>
+      <a class="save">保存</a>
+      <a class="dele">删除</a>
+    </header>
+    <div class="content">
+      <form>
+        <div>
+          <span>姓名：</span>
+          <input type="text" id="name" name="name" value="<%= name %>">
+        </div>
+        <div>
+          <span>性别：</span>
+          <input type="text" id="sex" name="sex" value="<%= sex %>">
+        </div>
+        <div>
+          <span>邮箱：</span>
+          <input type="email" id="email" name="email" value="<%= email %>">
+        </div>   
+      </form>
+    </div>
+  </script>
+</html>

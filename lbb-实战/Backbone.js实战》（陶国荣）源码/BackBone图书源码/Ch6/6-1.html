@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>通过视图对象添加DOM元素</title>
+    <script src="Js/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="Js/underscore-min.js" type="text/javascript"></script>
+    <script src="Js/backbone-min.js" type="text/javascript"></script>
+    <style type="text/css">
+        .cls_6
+        {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div id="show" class="cls_6"></div>
+</body>
+<script type="text/javascript">
+    var testview = Backbone.View.extend({
+        el: '#show',
+        render: function (content) {
+            this.el.innerHTML = content;
+        }
+    });
+    var test = new testview();
+    test.render("backbone是构建前端MVC的利器");
+</script>
+</html>

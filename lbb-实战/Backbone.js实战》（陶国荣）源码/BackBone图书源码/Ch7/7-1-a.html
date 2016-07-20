@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>history</title>
+    <style type="text/css">
+        body
+        {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <input id="btnforward" type="button" 
+           value="前进" onclick="window.history.forward();" />
+    <a href="7-1-b.html" id="lnkforward">前进</a>
+</body>
+<script type="text/javascript">
+    var $obj_wh = window.history;
+    if ($obj_wh.length > 2) {
+        document.getElementById("lnkforward").style.display = "none";
+    } else {
+        document.getElementById("btnforward").style.display = "none";
+    }
+</script>
+</html>

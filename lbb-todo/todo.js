@@ -8,25 +8,32 @@ $(function (){
 				done: false,
 			}
 		}
-
 	});
 
-
+	//collection
 	var TodoList = Backbone.Collection.extend({
 		model: Todo,
-
 	});
 
 	var Todos = new TodoList;
 
-    console.log(Todos);
+	//view
 
-    var AppView = Backbone.View.extend({
-    	initialize: function(){
-    		this.input = this.$("#new-todo");
-    		this.allCheckbox = this.$("#toggle-all")[0];
-    	},
-    });
+	var TodoView = Backbone.View.extend({
+		template: _.template($('#item-template').html()),
 
-	var App = new AppView;
+		events: {
+
+		},
+
+		initialize: function(){
+			this.listenTo(this.model, 'change', this.render);
+		},
+
+		render: function(){
+			this.$el.html("ASDF");
+			alert("af");
+		},
+
+	}); 
 })	

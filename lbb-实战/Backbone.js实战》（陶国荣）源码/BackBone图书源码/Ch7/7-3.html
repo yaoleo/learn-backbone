@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>location对象</title>
+</head>
+<body>
+  <div id="divShow"></div>
+  <input id="btnreload" type="button" 
+         value="重载" onclick="window.location.reload();" />
+  <input id="btnreplace" type="button" value="替换" 
+         onclick="window.location.replace('http://www.rttop.cn');" />
+</body>
+<script type="text/javascript">
+    var $HTML = "";
+    var $obj_wl = window.location;
+    for (var idx in $obj_wl) {
+        $HTML += "<b>" + idx + ":" + "</b> " + $obj_wl[idx] + "</br>";
+    }
+    document.getElementById("divShow").innerHTML = $HTML;
+</script>
+</html>

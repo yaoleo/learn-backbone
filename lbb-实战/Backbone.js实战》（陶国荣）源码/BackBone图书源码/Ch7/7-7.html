@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>route()方法</title>
+    <script src="Js/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="Js/underscore-min.js" type="text/javascript"></script>
+    <script src="Js/backbone-min.js" type="text/javascript"></script>
+    <style type="text/css">
+        div
+        {
+            margin:5px 0px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a href="">首页</a> |
+        <a href="#search">查询列表</a> |
+        <a href="#search/abc">关键字查询</a> |
+        <a href="#search2/abc/p2">页码关键字查询</a> |
+        <a href="#error">其他页</a>
+    </div>
+    <div id="divShow"></div>
+</body>
+<script type="text/javascript">
+    var $divShow = $("#divShow");
+    var testrouter = Backbone.Router.extend({
+        routes: {
+            '': 'main',
+            'search/:key': 'search_key',
+            'search/:key/p:page': 'search_key_page',
+            '*search': 'search_default'
+        },
+        initialize: function () {
+            this.route("search", 'search_list', function () {
+                $divShow.html("初始化时，查询列表");
+            });
+        },
+        main: function () {
+            $divShow.html("首页");
+        },
+        search_list: function () {
+            $divShow.html("查询列表");
+        },
+        search_key: function (key) {
+            $divShow.html("查询关键字为 " + key + " 记录");
+        },
+        search_default: function () {
+            $divShow.html("其他页");
+        }
+    });
+    var router = new testrouter();
+    router.route('search2/:key/p:page', 'search_key_page', function (key, page) {
+        $divShow.html("实例化后，查询关键字为 " + key + " 记录,页码为 " + page);
+    });
+    Backbone.history.start();
+</script>
+</html>

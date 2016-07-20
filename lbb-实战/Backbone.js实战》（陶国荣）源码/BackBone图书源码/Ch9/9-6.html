@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>加载非AMD标准的模块文件</title>
+    <script src="Script/require.js" 
+            type="text/javascript"></script>
+    <link href="Css/Require.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        require.config({
+            baseUrl: "/Ch9/Script",
+            paths: {
+                "jQuery": "jquery-1.8.2.min",
+                "underscore": "underscore-min",
+                "backbone": "backbone-min"
+            },
+            shim: {
+                'underscore': {
+                    exports: '_'
+                },
+                'backbone': {
+                    deps: ['underscore', 'jQuery'],
+                    exports: 'Backbone'
+                }
+            }
+        });
+        require(['backbone'], function (Backbone) {
+            var person = Backbone.Model.extend({
+                defaults: {
+                    name: "",
+                    sex: "男",
+                    email: "tao_guo_rong@163.com"
+                }
+            });
+            var man = new person();
+            man.set("name", "陶国荣");
+            $("#tip").show().html(man.get("name") + "<br/>" + man.get("sex") + "<br/>" + man.get("email"));
+        });
+    </script>
+</head>
+<body>
+    <div id="tip"></div>
+</body>
+</html>

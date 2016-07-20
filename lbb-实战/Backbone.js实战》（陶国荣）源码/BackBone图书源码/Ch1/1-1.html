@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>underscore中_.bindAll函数示例</title>
+    <script src="Js/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="Js/underscore-min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="divTip">点击我</div>
+    <script type="text/javascript">
+        var divView = {
+            ele: '#divTip',
+            tip: 'hello,underscore!',
+            onClick: function () { $(this.ele).html(this.tip); }
+        };
+        _.bindAll(divView, 'onClick');
+        $(divView.ele).bind('click', divView.onClick);
+//                var tmp = _.keys({ name: "陶国荣",
+//                    sex: "男",
+//                    email: "tao_guo_rong@163.com"
+//                });
+//                console.log(tmp[1]);
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>处理逻辑的模版</title>
+    <script src="Js/jquery-1.8.2.min.js" 
+            type="text/javascript"></script>
+    <script src="Js/underscore-min.js" 
+            type="text/javascript"></script>
+    <script src="Js/backbone-min.js" 
+            type="text/javascript"></script>
+    <style type="text/css">
+        body
+        {
+            font-size: 13px;
+        }
+        div
+        {
+            width: 260px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="score"></div>
+    <script type="text/template" id="score-tpl">
+       <%= score>600 ? "优秀":"及格"%>
+    </script>
+</body>
+<script type="text/javascript">
+    var stuview = Backbone.View.extend({
+        el: $("#score"),
+        initialize: function () {
+            this.template = _.template($("#score-tpl").html());
+        },
+        render: function (pscore) {
+            this.$el.html(this.template({ score: pscore }));
+        }
+    });
+    //实例化一个view视图
+    var stuv = new stuview();
+    stuv.render(600)
+</script>
+</html>

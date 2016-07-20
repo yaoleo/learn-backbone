@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Js/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="Js/underscore-min.js" type="text/javascript"></script>
+    <script src="Js/backbone-min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+//        // 创建一个Model的实例  
+//        var m = new Backbone.Model();
+//        var obj = { a: "1", b: "2" }
+//        // 将监听函数绑定到m对象的自定义事件custom中  
+//        m.listenTo(obj, 'custom', function (index) {
+//            // 监听函数接收并显示参数index  
+//            alert(index);
+//        });
+
+//        // 循环触发m对象的custom事件  
+//        for (var i = 0; i < 3; i++) {
+//            m.trigger('custom', i);
+        //        }
+
+//        var a = _.extend({}, Backbone.Events);
+//        var b = _.extend({}, Backbone.Events);
+//        a.listenTo(b, 'all', function () { ok(true); });
+//        b.trigger('anything');
+//        a.listenTo(b, 'all', function () { ok(false); });
+//        a.stopListening();
+//        b.trigger('anything');
+        //        function ok(v) {alert(v);}
+
+        var person = Backbone.Model.extend({
+            defaults: {
+                name: "",
+                sex: "女",
+                age: 32,
+                score: 120
+            }
+        });
+        var man = new person();
+        man.on("change:age", function () {
+            console.log("您触发了change:age事件");
+        });
+        var event_fun = function () { console.log("您触发了change:name事件"); }
+        man.on("change:name", event_fun);
+
+        man.on("all", function (value) {
+            console.log("您触发了all事件中" + value);
+        });
+//        man.set("name", "陶国荣");
+//        man.set("age", 35);
+       man.trigger("all");
+
+
+//        var obj = _.extend({}, Backbone.Events);
+//        obj.listenTo(man, "change:name", function (model, value) {
+//            console.log("姓名修改后的值为:" + value);
+//        });
+//        obj.listenTo(man, "change:age", function (model, value) {
+//            console.log("年龄修改后的值为:" + value);
+//        });
+//        obj.listenTo(man, "change:score", function (model, value) {
+//            console.log("分数修改后的值为:" + value);
+//        });
+//        //停止监听某一个事件
+//        obj.stopListening(man, "change:name");
+//        man.set("name", "张三");
+//        man.set("age", 35);
+//        man.set("score", 600);
+//        //停止监听两个事件
+//        obj.stopListening(man, "change:name change:age");
+//        man.set("name", "李四");
+//        man.set("age", 36);
+//        man.set("score", 601);
+//        //停止监听全部事件
+//        obj.stopListening();
+//        man.set("name", "王二");
+//        man.set("age", 37);
+//        man.set("score", 602);
+
+//        man.on("change:score change:age", function (model, value) {
+//            var oldage = model.previous("age");
+//            var newage = model.get("age");
+//            if (oldage != newage) {
+//                console.log("age原值:" + oldage + ",新值:" + newage);
+//            }
+//            var oldscore = model.previous("score");
+//            var newscore = model.get("score");
+//            if (oldscore != newscore) {
+//                console.log("score原值:" + oldscore + ",新值:" + newscore);
+//            }
+//        });
+//        man.set("age", 36);
+        //        man.set("score", 200);
+        //man.set({ "age": 36, "score": 200 });
+
+//        var objEvent = {
+//            "change:score": score_change,
+//            "change:age": age_change
+//        }
+//        man.on(objEvent);
+//        function score_change(model, value) {
+//            var oldscore = model.previous("score");
+//            var newscore = model.get("score");
+//            if (oldscore != newscore) {
+//                console.log("score原值:" + oldscore + ",新值:" + newscore);
+//            }
+//        }
+//        function age_change(model, value) {
+//            var oldage = model.previous("age");
+//            var newage = model.get("age");
+//            if (oldage != newage) {
+//                console.log("age原值:" + oldage + ",新值:" + newage);
+//            }
+//        }
+        //        man.set({ "age": 36, "score": 200 });
+//        var intNum = 0;
+//        man.on("change", function () {
+//            intNum++;
+//            console.log("事件触发的次数为" + intNum);
+//        });
+////        man.set("age", 36);
+//        //        man.set("age", 37);
+//        man.trigger("change");
+        //        man.trigger("change");
+
+//        man.on("change_age_sex", function () {
+//            console.log("您手动触发了一个自定义事件");
+//        });
+//        man.on("change:age", function (model, value) {
+//            //            if (value != undefined)
+//            console.log("您修改后的年龄为" + value);
+//            //            else
+//            //                console.log("您手动触发了一个年龄修改事件");
+//        });
+//        man.trigger("change_age_sex");
+//        man.trigger("change:age");
+        //        man.set("age", 37);
+//        var m=0;
+//        var callback = function () { m++; };
+//        man.on("change_age_sex", callback);
+//        //man.off("change_age_sex", callback);
+//        man.trigger("change_age_sex");
+//        //man.set("age", 37);
+//                console.log(m);
+
+//            var obj = { counterA: 0, counterB: 0 };
+//            _.extend(obj, Backbone.Events);
+
+//            var callback = function () { obj.counterA += 1; };
+//            obj.on('event', callback);
+
+//            obj.on('event', function () { obj.counterB += 1; });
+//            obj.trigger('event');
+
+//            obj.off('event', callback);
+//            obj.trigger('event');
+
+//           console.log(obj.counterA, 1, 'counterA should have only been incremented once.');
+        //           console.log(obj.counterB, 2, 'counterB should have been incremented twice.');
+//        var m=0, n=0;
+//        var callback_a = function () {
+//            m++;
+//            console.log("您执行a事件的次数为" + m);
+//        }
+//        var callback_b = function () {
+//            n++;
+//            console.log("您执行b事件的次数为" + n);
+//        }
+
+//        man.on("event_a", callback_a);
+//        man.on("event_b", callback_b);
+//        man.off();
+//        man.trigger('event_a event_b');
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

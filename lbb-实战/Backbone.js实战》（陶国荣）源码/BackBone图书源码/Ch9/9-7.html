@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>加载require插件模块文件</title>
+    <script src="Script/require.js" 
+            type="text/javascript"></script>
+    <link href="Css/Require.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        require.config({
+            baseUrl: "/Ch9/Script",
+            paths: {
+                "jQuery": "jquery-1.8.2.min",
+                "domReady": "domReady"
+            }
+        });
+        require(['domReady', 'jQuery'], function (domReady) {
+            domReady(function () {
+                $("body").append("<div id='tip'>页面加载完成后再执行！</div>");
+                $("#tip").show();
+            });
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

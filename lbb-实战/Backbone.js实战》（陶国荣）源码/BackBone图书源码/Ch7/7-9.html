@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>stop()方法</title>
+    <script src="Js/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="Js/underscore-min.js" type="text/javascript"></script>
+    <script src="Js/backbone-min.js" type="text/javascript"></script>
+    <style type="text/css">
+        div
+        {
+            margin:5px 0px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div id="divShow"></div>
+    <input id="btnStop" type="button" value="停止" />
+</body>
+<script type="text/javascript">
+    var $divShow = $("#divShow");
+    var testrouter = Backbone.Router.extend({
+        routes: {
+            'search2/:key': 'search2_key',
+            'search3/:key': 'search3_key'
+        },
+        search2_key: function (key) {
+            $divShow.html("查询2关键字为 " + key + " 记录");
+        },
+        search3_key: function (key) {
+            $divShow.html("查询3关键字为 " + key + " 记录");
+        }
+    });
+    var router = new testrouter();
+    var intnum = 0;
+    window.setInterval(function () {
+        intnum++;
+        if (intnum % 2 == 0)
+            router.navigate("search2/abc", { trigger: true });
+        else
+            router.navigate("search3/def", { trigger: true });
+    }, 3000);
+    Backbone.history.start();
+    $("#btnStop").bind("click", function () {
+        if ($(this).val() == "停止") {
+            $(this).val("开始");
+            Backbone.history.stop();
+        } else {
+            $(this).val("停止");
+            Backbone.history.start();
+        }
+    });
+</script>
+</html>

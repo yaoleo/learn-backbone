@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>绑定视图模版中的多个事件</title>
+    <script src="Js/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="Js/underscore-min.js" type="text/javascript"></script>
+    <script src="Js/backbone-min.js" type="text/javascript"></script>
+    <style type="text/css">
+        body
+        {
+            font-size: 13px;
+        }
+        div
+        {
+            width: 260px;
+            text-align: center;
+            padding: 5px;
+        }
+        .changed
+        {
+            border: solid 1px #555;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+    </div>
+    <script type="text/template" id="main-tpl">
+       <div id="backbone"><%=mess%></div>
+       <input id="btnshow" type="button" value="点击一下" />
+    </script>
+</body>
+<script type="text/javascript">
+    var stuview = Backbone.View.extend({
+        el: $("#main"),
+        initialize: function () {
+            this.template = _.template($("#main-tpl").html());
+            this.render();
+        },
+        render: function () {
+            this.$el.html(this.template({
+                mess: "backbone是构建前端MVC的利器"
+            })
+            );
+        },
+        events: {
+            'click div#backbone': 'togcls',
+            'click input#btnshow': 'toggle'
+        },
+        togcls: function () {
+            $("#backbone").toggleClass("changed");
+        },
+        toggle: function () {
+            $("#backbone").toggle();
+        }
+    });
+    //实例化一个view视图
+    var stuv = new stuview();
+</script>
+</html>

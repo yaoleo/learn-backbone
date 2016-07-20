@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>HTML5中history API方法</title>
+    <style type="text/css">
+        div
+        {
+            margin:5px 0px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div>记录总量:<span id="divNum"></span></div>
+    <div>刷新后：<span id="divShow"></span></div>
+</body>
+<script type="text/javascript">
+    var obj_b_state = {
+        Code: "10107",
+        Name: "李建洲",
+        Score: 950
+    };
+    window.history.replaceState(obj_b_state, "HTML5中history API方法");
+    document.getElementById("divNum").innerHTML = history.length
+    document.getElementById("divShow").innerHTML = JSON.stringify(window.history.state);
+</script>
+</html>

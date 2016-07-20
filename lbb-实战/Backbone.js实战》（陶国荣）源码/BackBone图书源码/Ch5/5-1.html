@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Js/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="Js/underscore-min.js" type="text/javascript"></script>
+    <script src="Js/backbone-min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var student = Backbone.Model.extend({
+            defaults: {
+                Code: "10001",
+                Name: "张三",
+                Score: 100
+            },
+            idAttribute: "Code"
+        });
+        var stulist = Backbone.Collection.extend({
+            initialize: function () {
+                //初始化时监听对象添加事件
+                this.on("add", function (model, response, options) {
+                    console.log(stus.models[0].toJSON());
+                });
+            },
+            model: student,
+            url: "/Ch5/api/create2.php"
+        });
+        var stus = new stulist();
+        stus.create({
+            Code: "10107",
+            Name: "陶国荣",
+            Score: 750
+        }, {
+            success: function (model, response, options) {
+                console.log(response.changed.code);
+            }
+        });
+//        for (var i = 0; i < stus.models.length; i++) {
+//            console.log(stus.models[i].toJSON());
+//        }
+        //console.log(stus.models);
+        //console.log(stus.toJSON());
+
+//        for (var i = 0; i < stus.models.length; i++) {
+//            console.log(stus.models[i].toJSON());
+//        }
+//        var stumodels = [{
+//            Code: "10101",
+//            Name: "刘真真",
+//            Score: 530
+//        }, {
+//            Code: "10102",
+//            Name: "张明基",
+//            Score: 460
+//        }, {
+//            Code: "10103",
+//            Name: "舒虎",
+//            Score: 660
+//        }, {
+//            Code: "10104",
+//            Name: "周小敏",
+//            Score: 500
+//        }, {
+//            Code: "10105",
+//            Name: "陆明明",
+//            Score: 300
+//        }, {
+//            Code: "10106",
+//            Name: "占小方",
+//            Score: 380
+//        }, {
+//            Code: "10107",
+//            Name: "陈天豪",
+//            Score: 720
+//        }];
+//        var stus = new Backbone.Collection(stumodels, {
+//            model: student,
+//            comparator: function (model_1, model_2) {
+//                var intcomp = model_1.get('Score') > model_2.get('Score');
+//                return intcomp ? 0 : 1;
+//            }
+//        });
+//        stus.sort();
+//        //排序前输出全部的模型对象
+//        for (var i = 0; i < stus.models.length; i++) {
+//            console.log(stus.models[i].toJSON());
+//        }
+//        stus.remove(k);
+//        stus.add({
+//            Code: "10108",
+//            Name: "李煜",
+//            Score: 570
+//        });
+//        
+//        console.log("----------------排序结果----------------");
+//        //排序后输出全部的模型对象
+//        for (var i = 0; i < stus.models.length; i++) {
+//            console.log(stus.models[i].toJSON());
+//        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

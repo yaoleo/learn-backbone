@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>加载指定路径的模块文件</title>
+    <script src="Script/require.js" 
+            type="text/javascript"></script>
+    <link href="Css/Require.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        require.config({
+            baseUrl: "/Ch9/Script",
+            paths: {
+                "jQuery": "jquery-1.8.2.min"
+            }
+        });
+        require(["jQuery"], function () {
+            $("#tip").show().html("欢迎来到 require 世界！");
+        });
+    </script>
+</head>
+<body>
+    <div id="tip"></div>
+</body>
+</html>

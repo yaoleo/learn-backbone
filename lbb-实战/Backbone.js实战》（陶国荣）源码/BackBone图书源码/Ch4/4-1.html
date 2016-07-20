@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Js/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="Js/underscore-min.js" type="text/javascript"></script>
+    <script src="Js/backbone-min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+//        var student = Backbone.Model.extend({
+//            initialize: function () {
+//                intNum++;
+//                console.log("您构建了" + intNum + "个对象");
+//            }
+//        });
+//        var intNum = 0;
+//        var stuA = new student();
+//        var stuB = new student();
+//        var student = Backbone.Model.extend({
+//            initialize: function () {
+//                初始化时监听属性值变化事件
+//                this.on("change:Name", function (model, value) {
+//                    var oldname = model.previous("Name");
+//                    var newname = value;
+//                    if (oldname != newname) {
+//                        console.log("Name原值:" + oldname + ",新值:" + newname);
+//                    }
+//                });
+//            },
+//            defaults: {
+//                Code: "",
+//                Name: "",
+//                Score: ""
+//            }
+//        });
+//        var stuA = new student({
+//            Code: "10104",
+//            Name: "周小敏",
+//            Score: "500"
+//        });
+//        var stuB = new student();
+//        stuB.set({
+//            Code: "10105",
+//            Name: "陆明明",
+//            Score: "300"
+//        });
+//        console.log("1. 学号:" + stuA.get("Code") + " 姓名:" + stuA.get("Name") +
+//                    " 分数:" + stuA.get("Score"));
+//        console.log("2. 学号:" + stuB.get("Code") + " 姓名:" + stuB.get("Name") +
+//                    " 分数:" + stuB.get("Score"));
+
+//        stuA.PrintLog();
+
+//        console.log(stuA.get("Name") + " 在 " + stuA.get("Class") + " 读小学");
+//        console.log(stuA.escape("Name") + " 在 " + stuA.escape("Class") + " 读小学");
+//        console.log(stuE1.toJSON());
+//        直接输出attributes对象
+//        console.log(stuE.attributes);
+//        console.log(stuE.toJSON());
+//        遍历后输出attributes对象中的每项属性和值
+//        var attrs = stuE.attributes;
+//        for (var i in attrs) {
+//            console.log(i + ":" + stuE.attributes[i]);
+//        }
+
+//        console.log(stuE.toJSON());
+//        console.log(stuE.previousAttributes());
+//        console.log("------");
+//        stuE.set({
+//            Code: "10107",
+//            Name: "陈天豪",
+//            Score: 720
+//        });
+//        console.log(stuE.toJSON());
+//        console.log(stuE.previousAttributes());
+        //        stuE.destroy();
+
+        var student = Backbone.Model.extend({
+            initialize: function () {
+                //构造函数 
+                this.on('destroy', function () {
+                    console.log('正在调用destroy方法');
+                });
+            },
+            url: "/Ch4/api/destroy2.php",
+            idAttribute: "Code"
+        });
+        var stuE = new student({
+            Code: "10107"
+        });
+        stuE.destroy({
+            success: function (model, response) {
+                if (response.code == "0") {
+                    console.log("Code为 " + model.get("Code") + " 的数据已删除");
+                }
+            },
+            error: function (error) {
+                console.log("删除数据出现异常");
+            },
+            wait:true
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

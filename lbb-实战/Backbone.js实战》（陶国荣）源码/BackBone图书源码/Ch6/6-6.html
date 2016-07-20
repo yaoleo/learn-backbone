@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>自定义模版变量标记</title>
+    <script src="Js/jquery-1.8.2.min.js" 
+            type="text/javascript"></script>
+    <script src="Js/underscore-min.js" 
+            type="text/javascript"></script>
+    <script src="Js/backbone-min.js" 
+            type="text/javascript"></script>
+    <style type="text/css">
+        body
+        {
+            font-size: 12px;
+        }
+        ul
+        {
+            list-style-type: none;
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <ul id="ulshowstus"></ul>
+    <script type="text/template" id="stus-tpl">
+       <li>自定义模版变量标记</li>
+       <li>编号：{{Code}}</li>
+       <li>姓名：{{Name}}</li>
+       <li>分数：{{Score}}</li>
+    </script>
+</body>
+<script type="text/javascript">
+    _.templateSettings = {
+        interpolate: /\{\{(.+?)\}\}/g
+    };
+    var student = Backbone.Model.extend({
+        defaults: {
+            Code: "",
+            Name: "",
+            Score: 0
+        }
+    });
+    var stus = new student({
+        Code: "10106",
+        Name: "占小方",
+        Score: 380
+    });
+    var stuview = Backbone.View.extend({
+        el: $("#ulshowstus"),
+        initialize: function () {
+            this.template = _.template($("#stus-tpl").html());
+        },
+        render: function () {
+            this.$el.html(this.template(this.model.toJSON()));
+        }
+    });
+    //实例化一个view视图
+    var stuv = new stuview({ model: stus });
+    stuv.render();  
+</script>
+</html>
+

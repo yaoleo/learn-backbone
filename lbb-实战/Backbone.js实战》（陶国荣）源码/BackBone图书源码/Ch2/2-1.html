@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="Js/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="Js/underscore-min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+//        var data = {
+//            name: "陶国荣",
+//            email:"tao_guo_rong@163.com"
+//        }
+//        var object = _(data);
+//        console.log(object.value().name + "_" + object.value().email);
+
+//        var arr = [15, 26, 37];
+//        var object = _(arr);
+//        console.log("max:" + object.max() + " min:" + object.min());
+        
+//       var arr = _.map([1, 2, 3, 4, 5, 6], 
+//          function (n) { if (!(n % 2)) return n; });
+//       for (var i = 0; i < arr.length; i++) {
+//           if (arr[i] != undefined)
+//               console.log(i + "->" + arr[i]);
+        //       }
+//        var obj = {
+//            a: "1",
+//            b: "2",
+//            c: "3",
+//            d: "44"
+//        }
+//        //        _.each(obj, function (v, k, obj) { return console.log(k + "->" + v); });
+//        var blnfind = _.find([2, 4, 6, 8, 10, 12], function (n) { return (!(n % 2 == 0)); });
+        //        console.log(blnfind != undefined ? blnfind : "未找到");
+
+//        var arrfind = _.filter([1, 4, 3, 6, 5, 8], function (n) { return (!(n % 2 == 0)); });
+        //        console.log(arrfind.length != 0 ? arrfind : "未找到");
+
+//        var stu = [
+//          { name: '张三', score: 60 },
+//          { name: '李四', score: 40 },
+//          { name: '王二', score: 80 }
+//        ];
+//        var min = _.min(stu, function (n) { return n.score; });
+//        console.log("最小分数值姓名为：" + min.name);
+//var max = _.max([60, 40, 80]);
+//        var stooges = [
+//        { name: 'moe', age: 40,score:5 },
+//        { name: 'larry', age: 50, score: 6 },
+//        { name: 'curly', age: 60, score: 7 }
+//        ];
+//        var xx = _.min(stooges, function (stooge) { return stooge.score; });
+        //        console.log(xx);
+//        var info = [
+//          { name: 'abcd' }, { name: 'abe' }, { name: 'abcdef' }
+//        ];
+//        var sort = _.sortBy(info, function (n) { return n.name.length; });
+        //        console.log(sort[0].name);
+
+//                var info = [
+//                  { name: 'abcd' }, { name: 'abe' }, { name: 'abcdef' }
+//                ];
+//        var sort = _.groupBy(['abcd', 'abe', 'abe', 'abe', 'abcdef'], "length");
+//        for (var p in sort)
+        //                console.log(p+"/"+sort[p]);
+
+//        var stu = ['李四', '王二', '李四', '张三', '李四'];
+//        var find = _.lastIndexOf(stu, '李四', 3);
+        //        console.log(find);
+
+//        var newarr = _.union([1, 2, 3], [3, 4, 5], [5, 6, 7]);
+//        console.log(newarr);
+
+//        var fun = function (v) { console.log('你输入的是：' + v); }
+        //        _.delay(fun, 1000, "underscore");
+//        var num, str;
+//        var fun = function () {
+//            num = 0; str = "1";
+//            console.log("初始化成功！");
+//        }
+//        var init = _.once(fun);
+//        init();
+        //        console.log("初始化后值->num:" + num + ";str:" + str);
+
+//        var input = function (n, s) { return s ? n + ",先生" : n + ",女士"; };
+//        input = _.wrap(input, function (input) {
+//            return "你好, " + input("陶国荣", 1) + ", 欢迎来到Backbone世界!";
+//        });
+        //        console.log(input());
+//        var A = function (a1) { return a1 * a1; }
+//        var B = function (b1) { return b1 * b1; }
+//        var C = function (c1) { return c1 * c1; }
+//        var D = _.compose(A, B, C);
+        //        console.log("最终结果为：" + D(2));
+//        var info = {
+//            name: '陶国荣',
+//            sex: '男',
+//            email: 'tao_guo_rong@163.com'
+//        }
+//        var arrvalue = _.values(info);
+        //        console.log(arrvalue);
+//        var data = {
+//            A: 1,
+//            B: 2,
+//            C: 3,
+//            D: 4
+//        }
+//        var newdata = _.omit(data, 'B', 'C');
+        //        console.log(newdata);
+
+//        var info = {}
+//        info = _.defaults(info, {
+//            name: '',
+//            email: 'tao_guo_rong@163.com'
+//        });
+//        info.name = "陶国荣";
+        //        console.log(info);
+
+//          var info = {
+//            name: '陶国荣',
+//            sex: '男',
+//            email: 'tao_guo_rong@163.com'
+//        }
+//        var strShow;
+//        if (_.has(info, 'score'))
+//            strShow = info.score;
+//        else
+//            strShow = "对象中不包含该属性!";
+        //        console.log(info.score);
+
+//        var intdef = _.random(10);
+//        var intnum = _.random(10, 20);
+        //        console.log("两个随机数分别为：" + intdef + "," + intnum);
+//        var stresc = _.escape("email/163'tao'<guo>&rong- _ . ! ~ * ");
+//        var strunesc = _.unescape(stresc);
+//        console.log("编码后：" + stresc);
+        //        console.log("编码前：" + strunesc);
+
+//        var tpl = _.template("<%-str%>");
+        //        console.log(tpl({ str: "姓/'名'&：<陶>国荣" }));
+        var data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        var find = _.chain(data)
+                    .filter(function (num) { return num % 2 == 0; })
+                    .without(data, 2, 10)
+                    .last()
+                    .value();
+        console.log("最终值为：" + find);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
